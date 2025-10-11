@@ -1,0 +1,73 @@
+We appreciate your participation in the Amazon ML Challenge 2025!!
+
+With the upcoming ML Challenge, we urge you to review the following key instructions and guidelines meticulously. Your attention to detail and adherence to these guidelines will greatly contribute to your success in this endeavor.
+
+Note: Any form of cheating, plagiarism, or unfair practices like registering and attempting the challenge via multiple IDs will not be tolerated and will lead to instant disqualification of the participant.
+
+Kindly read through the following vital instructions and important guidelines for this round:
+
+Key Instructions:
+
+Challenge Window: 11th October 2025, 12:00 AM IST to 13th October 2025, 11:59 PM IST.
+All teams will get access to the problem statement with the data set on day 1 and will have time to build and submit solutions till day 3.
+Teams can track their performance through the leaderboard, which will reflect team rankings live over the course of this challenge. After the challenge the final leaderboard will be revealed.
+Please use this link to ask any queries during the hackathon. - https://docs.google.com/spreadsheets/d/1waVJuHNWELAyLZQgwRyDvvDiIeyqN64TY_MKw1yzHqo/edit?gid=0#gid=0
+Below mentioned artefacts need to be shared for the best solution submitted by the team:
+1-2 pager document explaining the ML approach, ML models used, experiments and conclusion.
+Source code used for experiments, training and inference, with proper comments describing the functions.
+Each team can make a maximum of 5 submissions per day for over 3 days of the hackathon, after which the submit button will be disabled.
+Post successful submission of the artefacts, leaderboard score and each team member satisfying the eligibility criteria, the top 50 teams will be announced.
+Disclaimer: As part of the Amazon ML Challenge hackathon event, we request that you refrain from using publicly or commercially available large language model (LLM) APIs such as those provided by OpenAI, Anthropic, Microsoft, Facebook, Google or other AI companies. The submissions using any of the LLM APIs will be discarded.
+Simultaneous Logins and Accessibility:
+
+You can attempt the assessment on any desktop or laptop only and not on a mobile device.
+Simultaneous logins are not allowed i.e. you can only attempt the assessment from one laptop or desktop.
+In case simultaneous logins are detected, the system may terminate the assessment altogether, and you may only get error messages.
+Other instructions:
+
+If you face any technical problem, clear your browser's cache or try it on a different browser or in incognito mode.
+You may also try changing your internet - mobile hotspot, wifi, etc.
+Please shoot an email to support@unstop.com with a screenshot of the page where you are facing a problem and your registered email ID. Please note that we won't be helping you make decisions and any email asking us to make decisions will not be entertained.
+All the best!
+
+Regards,
+Team Amazon ML Challenge 2025
+
+Hi Naguru Feroz,
+
+We appreciate your participation in the Amazon ML Challenge 2025!!
+
+With the upcoming ML Challenge, we urge you to review the following key instructions and guidelines meticulously. Your attention to detail and adherence to these guidelines will greatly contribute to your success in this endeavor.
+
+Note: Any form of cheating, plagiarism, or unfair practices like registering and attempting the challenge via multiple IDs will not be tolerated and will lead to instant disqualification of the participant.
+
+Kindly read through the following vital instructions and important guidelines for this round:
+
+Key Instructions:
+
+Challenge Window: 11th October 2025, 12:00 AM IST to 13th October 2025, 11:59 PM IST.
+All teams will get access to the problem statement with the data set on day 1 and will have time to build and submit solutions till day 3.
+Teams can track their performance through the leaderboard, which will reflect team rankings live over the course of this challenge. After the challenge the final leaderboard will be revealed.
+Please use this link to ask any queries during the hackathon. - https://docs.google.com/spreadsheets/d/1waVJuHNWELAyLZQgwRyDvvDiIeyqN64TY_MKw1yzHqo/edit?gid=0#gid=0
+Below mentioned artefacts need to be shared for the best solution submitted by the team:
+1-2 pager document explaining the ML approach, ML models used, experiments and conclusion.
+Source code used for experiments, training and inference, with proper comments describing the functions.
+Each team can make a maximum of 5 submissions per day for over 3 days of the hackathon, after which the submit button will be disabled.
+Post successful submission of the artefacts, leaderboard score and each team member satisfying the eligibility criteria, the top 50 teams will be announced.
+Disclaimer: As part of the Amazon ML Challenge hackathon event, we request that you refrain from using publicly or commercially available large language model (LLM) APIs such as those provided by OpenAI, Anthropic, Microsoft, Facebook, Google or other AI companies. The submissions using any of the LLM APIs will be discarded.
+Simultaneous Logins and Accessibility:
+
+You can attempt the assessment on any desktop or laptop only and not on a mobile device.
+Simultaneous logins are not allowed i.e. you can only attempt the assessment from one laptop or desktop.
+In case simultaneous logins are detected, the system may terminate the assessment altogether, and you may only get error messages.
+Other instructions:
+
+If you face any technical problem, clear your browser's cache or try it on a different browser or in incognito mode.
+You may also try changing your internet - mobile hotspot, wifi, etc.
+Please shoot an email to support@unstop.com with a screenshot of the page where you are facing a problem and your registered email ID. Please note that we won't be helping you make decisions and any email asking us to make decisions will not be entertained.
+All the best!
+
+Regards,
+Team Amazon ML Challenge 2025
+
+Based on this, build the model only use python.
