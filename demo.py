@@ -4,8 +4,12 @@ Demo script to show the ML pipeline with sample data
 """
 
 import os
+import sys
 import pandas as pd
 import numpy as np
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+
 from src.utils import calculate_smape
 
 def create_sample_data():

@@ -7,8 +7,34 @@ Main script for training and prediction
 import os
 import sys
 import argparse
+import pandas as pd
+import numpy as np
 from src.train import train_model
 from src.predict import predict_prices
+
+def create_sample_training_data():
+    """Create sample training data from sample_test.csv if needed."""
+    
+    sample_train_path = 'dataset/sample_train.csv'
+    
+    if os.path.exists(sample_train_path):
+        return sample_train_path
+    
+    sample_test_path = 'dataset/sample_test.csv'
+    if not os.path.exists(sample_test_path):
+        return None
+    
+    print("Creating sample training data from sample_test.csv...")
+    sample_df = pd.read_csv(sample_test_path)
+    
+    np.random.seed(42)
+    sample_df['price'] = np.random.uniform(5, 100, len(sample_df))
+    
+    sample_df.to_csv(sample_train_path, index=False)
+    print(f"Sample training data created with {len(sample_df)} samples")
+    
+    return sample_train_path
+
 
 def main():
     """Main entry point for the application."""
@@ -77,15 +103,18 @@ def main():
     
     if args.mode in ['train', 'both']:
         if not os.path.exists(args.train_path):
-            print(f"\nError: Training data not found at {args.train_path}")
-            print("Please ensure the training data is available.")
+            print(f"\nWarning: Training data not found at {args.train_path}")
+            print("Please ensure the training data (train.csv) is available for actual training.")
             
-            print("\nUsing sample data for demonstration...")
-            args.train_path = 'dataset/sample_test.csv'
+            print("\nCreating sample training data for demonstration...")
+            sample_path = create_sample_training_data()
             
-            if not os.path.exists(args.train_path):
-                print(f"Error: No data available at {args.train_path}")
+            if sample_path is None:
+                print(f"Error: Cannot create sample data. Please provide train.csv")
                 sys.exit(1)
+            
+            args.train_path = sample_path
+            print(f"Using sample training data: {args.train_path}")
         
         print("\n" + "="*70)
         print("TRAINING PHASE")

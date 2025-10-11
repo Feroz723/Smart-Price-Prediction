@@ -2,10 +2,22 @@ import numpy as np
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.linear_model import Ridge
 from xgboost import XGBRegressor
-from lightgbm import LGBMRegressor
-from catboost import CatBoostRegressor
 import pickle
 import os
+
+try:
+    from lightgbm import LGBMRegressor
+    LIGHTGBM_AVAILABLE = True
+except (ImportError, OSError) as e:
+    LIGHTGBM_AVAILABLE = False
+    print(f"Warning: LightGBM not available ({str(e)}), will skip LightGBM model")
+
+try:
+    from catboost import CatBoostRegressor
+    CATBOOST_AVAILABLE = True
+except (ImportError, OSError) as e:
+    CATBOOST_AVAILABLE = False
+    print(f"Warning: CatBoost not available ({str(e)}), will skip CatBoost model")
 
 class PricePredictor:
     """Ensemble model for price prediction combining multiple regressors."""
@@ -32,24 +44,26 @@ class PricePredictor:
                 n_jobs=-1
             )
             
-            self.models['lightgbm'] = LGBMRegressor(
-                n_estimators=200,
-                max_depth=8,
-                learning_rate=0.05,
-                subsample=0.8,
-                colsample_bytree=0.8,
-                random_state=42,
-                n_jobs=-1,
-                verbose=-1
-            )
+            if LIGHTGBM_AVAILABLE:
+                self.models['lightgbm'] = LGBMRegressor(
+                    n_estimators=200,
+                    max_depth=8,
+                    learning_rate=0.05,
+                    subsample=0.8,
+                    colsample_bytree=0.8,
+                    random_state=42,
+                    n_jobs=-1,
+                    verbose=-1
+                )
             
-            self.models['catboost'] = CatBoostRegressor(
-                iterations=200,
-                depth=8,
-                learning_rate=0.05,
-                random_seed=42,
-                verbose=False
-            )
+            if CATBOOST_AVAILABLE:
+                self.models['catboost'] = CatBoostRegressor(
+                    iterations=200,
+                    depth=8,
+                    learning_rate=0.05,
+                    random_seed=42,
+                    verbose=False
+                )
             
             self.models['rf'] = RandomForestRegressor(
                 n_estimators=100,
@@ -60,12 +74,27 @@ class PricePredictor:
                 n_jobs=-1
             )
             
+            total_weight = 1.0
+            xgb_weight = 0.4
+            lgb_weight = 0.3 if LIGHTGBM_AVAILABLE else 0
+            cat_weight = 0.2 if CATBOOST_AVAILABLE else 0
+            rf_weight = 0.1
+            
+            if not LIGHTGBM_AVAILABLE:
+                xgb_weight += 0.15
+                rf_weight += 0.15
+            if not CATBOOST_AVAILABLE:
+                xgb_weight += 0.1
+                rf_weight += 0.1
+            
             self.weights = {
-                'xgboost': 0.3,
-                'lightgbm': 0.3,
-                'catboost': 0.25,
-                'rf': 0.15
+                'xgboost': xgb_weight,
+                'rf': rf_weight
             }
+            if LIGHTGBM_AVAILABLE:
+                self.weights['lightgbm'] = lgb_weight
+            if CATBOOST_AVAILABLE:
+                self.weights['catboost'] = cat_weight
         
         elif model_type == 'xgboost':
             self.models['xgboost'] = XGBRegressor(
@@ -80,27 +109,53 @@ class PricePredictor:
             self.weights['xgboost'] = 1.0
         
         elif model_type == 'lightgbm':
-            self.models['lightgbm'] = LGBMRegressor(
-                n_estimators=300,
-                max_depth=10,
-                learning_rate=0.03,
-                subsample=0.8,
-                colsample_bytree=0.8,
-                random_state=42,
-                n_jobs=-1,
-                verbose=-1
-            )
-            self.weights['lightgbm'] = 1.0
+            if LIGHTGBM_AVAILABLE:
+                self.models['lightgbm'] = LGBMRegressor(
+                    n_estimators=300,
+                    max_depth=10,
+                    learning_rate=0.03,
+                    subsample=0.8,
+                    colsample_bytree=0.8,
+                    random_state=42,
+                    n_jobs=-1,
+                    verbose=-1
+                )
+                self.weights['lightgbm'] = 1.0
+            else:
+                print("LightGBM not available, falling back to XGBoost")
+                self.models['xgboost'] = XGBRegressor(
+                    n_estimators=300,
+                    max_depth=10,
+                    learning_rate=0.03,
+                    subsample=0.8,
+                    colsample_bytree=0.8,
+                    random_state=42,
+                    n_jobs=-1
+                )
+                self.weights['xgboost'] = 1.0
         
         elif model_type == 'catboost':
-            self.models['catboost'] = CatBoostRegressor(
-                iterations=300,
-                depth=10,
-                learning_rate=0.03,
-                random_seed=42,
-                verbose=False
-            )
-            self.weights['catboost'] = 1.0
+            if CATBOOST_AVAILABLE:
+                self.models['catboost'] = CatBoostRegressor(
+                    iterations=300,
+                    depth=10,
+                    learning_rate=0.03,
+                    random_seed=42,
+                    verbose=False
+                )
+                self.weights['catboost'] = 1.0
+            else:
+                print("CatBoost not available, falling back to XGBoost")
+                self.models['xgboost'] = XGBRegressor(
+                    n_estimators=300,
+                    max_depth=10,
+                    learning_rate=0.03,
+                    subsample=0.8,
+                    colsample_bytree=0.8,
+                    random_state=42,
+                    n_jobs=-1
+                )
+                self.weights['xgboost'] = 1.0
         
         elif model_type == 'rf':
             self.models['rf'] = RandomForestRegressor(
