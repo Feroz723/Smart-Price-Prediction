@@ -1,0 +1,64 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+.pythonlibs/
+
+# Virtual environments
+venv/
+ENV/
+env/
+.venv
+
+# IDE
+.idea/
+*.swp
+*.swo
+*~
+
+# ML Models and Data
+models/
+images/
+catboost_info/
+*.pkl
+*.h5
+*.joblib
+
+# Output
+output/
+
+# Logs
+*.log
+logs/
+/tmp/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Project specific
+dataset/train.csv
+dataset/test.csv
+dataset/sample_train.csv
+branch_structure.json
+temp_auto_push.bat
+temp_interactive_push.bat
+.gitignore
